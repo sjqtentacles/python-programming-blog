@@ -1,0 +1,4 @@
+Sitemap: http://pythonmining.com/sitemapindex.xml
+
+User-Agent: *
+Host: pythonmining.com

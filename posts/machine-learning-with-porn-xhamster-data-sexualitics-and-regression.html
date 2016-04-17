@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Examining Sexualitics' porn metadata with machine learning algorithms.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machine Learning with Porn - xHamster Data, Sexualitics, and Regression | Python Mining</title>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://pythonmining.com/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="Allen">
+<meta property="og:site_name" content="Python Mining">
+<meta property="og:title" content="Machine Learning with Porn - xHamster Data, Sexualitics, and Regressio">
+<meta property="og:url" content="http://pythonmining.com/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html">
+<meta property="og:description" content="Examining Sexualitics' porn metadata with machine learning algorithms.">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2015-04-30T04:45:44-07:00">
+<meta property="article:tag" content="data">
+<meta property="article:tag" content="learning">
+<meta property="article:tag" content="machine">
+<meta property="article:tag" content="mining">
+<meta property="article:tag" content="pandas">
+<meta property="article:tag" content="porn">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="regression">
+<meta property="article:tag" content="scikit-learn">
+<meta property="article:tag" content="scikitlearn">
+<meta property="article:tag" content="sklearn">
+<meta property="article:tag" content="statistics">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://pythonmining.com/">
+
+                <span id="blog-title">Python Mining</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../stories/allen.html">About</a>
+                </li>
+<li>
+<a href="../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+<!-- Custom search --><form method="get" id="search" action="//duckduckgo.com/" class="navbar-form pull-left">
+<input type="hidden" name="sites" value="http://pythonmining.com/"><input type="hidden" name="k8" value="#444444"><input type="hidden" name="k9" value="#D51920"><input type="hidden" name="kt" value="h"><input type="text" name="q" maxlength="255" placeholder="Search…" class="span2" style="margin-top: 4px;"><input type="submit" value="DuckDuckGo Search" style="visibility: hidden;">
+</form>
+<!-- End of custom search -->
+
+
+            <ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="machine-learning-with-porn-xhamster-data-sexualitics-and-regression.ipynb" id="sourcelink">Source</a>
+    </li>
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Machine Learning with Porn - xHamster Data, Sexualitics, and Regression</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                    Allen
+            </span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2015-04-30T04:45:44-07:00" itemprop="datePublished" title="2015-04-30 04:45">2015-04-30 04:45</time></a></p>
+                    <p class="sourceline"><a href="machine-learning-with-porn-xhamster-data-sexualitics-and-regression.ipynb" id="sourcelink">Source</a></p>
+
+                <meta name="description" itemprop="description" content="Examining Sexualitics' porn metadata with machine learning algorithms.">
+</div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let me start off by saying that this dataset is available thanks to the great efforts of Antoine Mazières and his colleagues over at <a href="http://sexualitics.org/">Sexualitics</a>.</p>
+<p>Their research involved the mining of porn metadata to gain insights into trends in fetishes, a fascinating network analysis with a nice little web-tool available on their website. My small contribution to the project in this analysis is to use their data (part of it) to try and predict video viewcounts based on other available information - in some sense predicting the popularity of a video based on its category. The results are rather disappointing, but the methods and analysis are here for others to expand on if they wish.</p>
+<p>The main labor in this analysis involves massive cleaning, one-hot encoding, and Random Forest Regression (although a simple multiple linear regression works surprisingly well too). The dataset consists of about 700k records which makes for incredibly difficult computation.</p>
+<p>Anyway, let's start.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [1]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">isnan</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'xhamster.csv'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]]]</span>
+<span class="n">newCol</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
+<span class="n">newCol</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">'category'</span>
+<span class="n">newCol</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">'views'</span>
+<span class="n">newCol</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s">'votes'</span>
+<span class="n">newCol</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s">'comments'</span>
+<span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">newCol</span>
+<span class="k">print</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Index([u'upload_date', u'category', u'views', u'votes', u'comments', u'runtime'], dtype='object')
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+<div class="prompt output_prompt">
+    Out[1]:</div>
+
+<div class="output_html rendered_html output_subarea output_pyout">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead><tr style="text-align: right;">
+<th></th>
+      <th>upload_date</th>
+      <th>category</th>
+      <th>views</th>
+      <th>votes</th>
+      <th>comments</th>
+      <th>runtime</th>
+    </tr></thead>
+<tbody>
+<tr>
+<th>0</th>
+      <td> 2010-06-29</td>
+      <td> ['BBW', 'Black and Ebony', 'Interracial']</td>
+      <td>  17262</td>
+      <td>  65</td>
+      <td>  11</td>
+      <td>  120</td>
+    </tr>
+<tr>
+<th>1</th>
+      <td> 2010-11-07</td>
+      <td>                          ['Masturbation']</td>
+      <td>    953</td>
+      <td>   3</td>
+      <td> NaN</td>
+      <td>   15</td>
+    </tr>
+<tr>
+<th>2</th>
+      <td> 2010-02-12</td>
+      <td>             ['Babes', 'Teens', 'Webcams']</td>
+      <td>   6060</td>
+      <td>  11</td>
+      <td>   3</td>
+      <td>  163</td>
+    </tr>
+<tr>
+<th>3</th>
+      <td> 2010-06-29</td>
+      <td>                                   ['Men']</td>
+      <td>  12742</td>
+      <td>  87</td>
+      <td>  15</td>
+      <td> 1980</td>
+    </tr>
+<tr>
+<th>4</th>
+      <td> 2012-11-18</td>
+      <td>                                  ['Gays']</td>
+      <td>  32879</td>
+      <td>  75</td>
+      <td>   6</td>
+      <td> 1318</td>
+    </tr>
+<tr>
+<th>5</th>
+      <td> 2010-06-29</td>
+      <td>                     ['Amateur', 'Voyeur']</td>
+      <td>  33778</td>
+      <td>  62</td>
+      <td>   8</td>
+      <td>  625</td>
+    </tr>
+<tr>
+<th>6</th>
+      <td> 2010-06-29</td>
+      <td>                              ['Shemales']</td>
+      <td>  38515</td>
+      <td> 434</td>
+      <td> 111</td>
+      <td>  105</td>
+    </tr>
+<tr>
+<th>7</th>
+      <td> 2008-12-06</td>
+      <td>                               ['Amateur']</td>
+      <td> 122575</td>
+      <td> 206</td>
+      <td>   3</td>
+      <td>  289</td>
+    </tr>
+<tr>
+<th>8</th>
+      <td> 2008-12-06</td>
+      <td>                           ['Hidden Cams']</td>
+      <td> 114082</td>
+      <td> 124</td>
+      <td>  13</td>
+      <td> 2774</td>
+    </tr>
+<tr>
+<th>9</th>
+      <td> 2012-07-02</td>
+      <td>       ['Celebrities', 'MILFs', 'Vintage']</td>
+      <td>   4605</td>
+      <td>  40</td>
+      <td>  25</td>
+      <td>  172</td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So here we see a cut-down version of the original dataset. I wasn't a fan of the original labeling of 'nb_comments' and such so I just renamed them to regular old 'comments,' and I then cut down the title, description, and uploader columns. I figured that categories would be enough since I was already intending on using one-hot encoding for category names. The descriptions and titles would add unnecessary columns in my view. The above display is what I have so far, I then tried to cut out some bad data - as you can see there is a NaN entry in row 1 (index 1).</p>
+<!-- TEASER_END -->
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [2]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">origLength</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">"Length Data: "</span><span class="p">,</span><span class="n">origLength</span>
+<span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s">'any'</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">cutLength</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">"Length after cutting category=NaN Data: "</span><span class="p">,</span><span class="n">cutLength</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Length Data:  786121
+Length after cutting category=NaN Data:  726301
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Lucky for me, the data in the original set was well structured so that there weren't many missing values. I still have approximately 92% of the data remaining after cutting out bad rows.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [3]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">cleanedCat</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">category</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+<span class="n">cleanedCat</span> <span class="o">=</span> <span class="p">[</span><span class="s">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">"</span><span class="se">\'</span><span class="s">([a-z0-9A-Z\s]*)</span><span class="se">\'</span><span class="s">"</span><span class="p">,</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">cleanedCat</span><span class="p">]</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'category'</span><span class="p">]</span><span class="o">=</span> <span class="n">cleanedCat</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">
+    Out[3]:</div>
+
+<div class="output_html rendered_html output_subarea output_pyout">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead><tr style="text-align: right;">
+<th></th>
+      <th>upload_date</th>
+      <th>category</th>
+      <th>views</th>
+      <th>votes</th>
+      <th>comments</th>
+      <th>runtime</th>
+    </tr></thead>
+<tbody>
+<tr>
+<th>0</th>
+      <td> 2010-06-29</td>
+      <td> BBW,Black and Ebony,Interracial</td>
+      <td> 17262</td>
+      <td> 65</td>
+      <td> 11</td>
+      <td>  120</td>
+    </tr>
+<tr>
+<th>2</th>
+      <td> 2010-02-12</td>
+      <td>             Babes,Teens,Webcams</td>
+      <td>  6060</td>
+      <td> 11</td>
+      <td>  3</td>
+      <td>  163</td>
+    </tr>
+<tr>
+<th>3</th>
+      <td> 2010-06-29</td>
+      <td>                             Men</td>
+      <td> 12742</td>
+      <td> 87</td>
+      <td> 15</td>
+      <td> 1980</td>
+    </tr>
+<tr>
+<th>4</th>
+      <td> 2012-11-18</td>
+      <td>                            Gays</td>
+      <td> 32879</td>
+      <td> 75</td>
+      <td>  6</td>
+      <td> 1318</td>
+    </tr>
+<tr>
+<th>5</th>
+      <td> 2010-06-29</td>
+      <td>                  Amateur,Voyeur</td>
+      <td> 33778</td>
+      <td> 62</td>
+      <td>  8</td>
+      <td>  625</td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The category entries were of some unusual style so I figured it would be wise to first clean it up before proceeding, so I ran a small bit of regex to filter out the proper names of categories and concatenate them with a comma for easier processing in the next code block with the python 'split' function. </p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [4]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">setCat</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cleanedCat</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">):</span>
+        <span class="n">setCat</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">setCat</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">setCat</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+91
+set(['Blondes', '', 'Matures', 'Ladyboys', 'Threesomes', 'MILFs', 'Gaping', 'Public Nudity', 'Amateur', 'French', 'Foot Fetish', 'Black Gays', 'Handjobs', 'Gangbang', 'Thai', 'Italian', 'Midgets', 'Facials', 'Redheads', 'Czech', 'Hidden Cams', 'Fingering', 'Femdom', 'Sex Toys', 'Swedish', 'Nipples', 'Face Sitting', 'Vintage', 'Bisexuals', 'Flashing', 'Danish', 'Blowjobs', 'Pornstars', 'Men', 'Hardcore', 'Voyeur', 'Lingerie', 'Cartoons', 'Massage', 'Webcams', 'Chinese', 'Celebrities', 'Babysitters', 'Gothic', 'Hentai', 'Big Boobs', 'Lesbians', 'Turkish', 'Stockings', 'Indian', 'Tits', 'Brazilian', 'Bukkake', 'Korean', 'Grannies', 'Russian', 'Emo', 'Group Sex', 'Interracial', 'Latin ', 'BBW', 'Strapon', 'Masturbation', 'Squirting', 'German', 'Shemales', 'Spanking', 'Showers', 'Cream Pie', 'Funny', 'Babes', 'Teens', 'Upskirts', 'Beach', 'Swingers', 'Hairy', 'POV', 'Arab', 'Latex', 'Softcore', 'British', 'Gays', 'Anal', 'Cumshots', 'Double Penetration', 'Brunettes', 'Cuckold', 'Japanese', 'Asian', 'BDSM', 'Black and Ebony'])
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So here we see a set containing the names of the categories in no particular order. I chose a set because I intend them to be columns of their own, although I did notice that the second entry in the set is '' which is rather odd. I simply removed that from the column list later on in the wrangling process because this is certainly some error that my regex missed... but it's also nothing significant enough to worry about!</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [5]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">setCat</span><span class="p">:</span>
+    <span class="n">listCat</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">category</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">j</span><span class="p">:</span>
+            <span class="n">listCat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">listCat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">listCat</span>
+
+<span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s">''</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s">'category'</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s">'votes'</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s">'comments'</span><span class="p">]</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">
+    Out[5]:</div>
+
+<div class="output_html rendered_html output_subarea output_pyout">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead><tr style="text-align: right;">
+<th></th>
+      <th>upload_date</th>
+      <th>views</th>
+      <th>runtime</th>
+      <th>Blondes</th>
+      <th>Matures</th>
+      <th>Ladyboys</th>
+      <th>Threesomes</th>
+      <th>MILFs</th>
+      <th>Gaping</th>
+      <th>Public Nudity</th>
+      <th>...</th>
+      <th>Gays</th>
+      <th>Anal</th>
+      <th>Cumshots</th>
+      <th>Double Penetration</th>
+      <th>Brunettes</th>
+      <th>Cuckold</th>
+      <th>Japanese</th>
+      <th>Asian</th>
+      <th>BDSM</th>
+      <th>Black and Ebony</th>
+    </tr></thead>
+<tbody>
+<tr>
+<th>0</th>
+      <td> 2010-06-29</td>
+      <td> 17262</td>
+      <td>  120</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 1</td>
+    </tr>
+<tr>
+<th>2</th>
+      <td> 2010-02-12</td>
+      <td>  6060</td>
+      <td>  163</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+    </tr>
+<tr>
+<th>3</th>
+      <td> 2010-06-29</td>
+      <td> 12742</td>
+      <td> 1980</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+    </tr>
+<tr>
+<th>4</th>
+      <td> 2012-11-18</td>
+      <td> 32879</td>
+      <td> 1318</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+    </tr>
+<tr>
+<th>5</th>
+      <td> 2010-06-29</td>
+      <td> 33778</td>
+      <td>  625</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+    </tr>
+</tbody>
+</table>
+<p>5 rows × 93 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I am aware that scikit-learn has a one-hot encoding feature although I'm not sure if it would have done exactly what I intended for this dataset. As you can see, the categories have been extended into separate columns. A '1' in the column indicates that the video (record) included the category in the original list of categories, and 0 if it did not. For example 'Blondes,Matures' would have a 1 under 'Blondes', a 1 for 'Mature', and 0's everywhere else.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the below bit of code, I'm converting the string formatted datetime into a unix timestamp for easier modeling.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [6]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">timestamps</span> <span class="o">=</span> <span class="p">[</span><span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">iDate</span><span class="p">,</span> <span class="s">"%Y-%m-</span><span class="si">%d</span><span class="s">"</span><span class="p">)</span><span class="o">.</span><span class="n">timetuple</span><span class="p">())</span> <span class="k">for</span> <span class="n">iDate</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s">'upload_date'</span><span class="p">]]</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'upload_date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">timestamps</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">
+    Out[6]:</div>
+
+<div class="output_html rendered_html output_subarea output_pyout">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead><tr style="text-align: right;">
+<th></th>
+      <th>upload_date</th>
+      <th>views</th>
+      <th>runtime</th>
+      <th>Blondes</th>
+      <th>Matures</th>
+      <th>Ladyboys</th>
+      <th>Threesomes</th>
+      <th>MILFs</th>
+      <th>Gaping</th>
+      <th>Public Nudity</th>
+      <th>...</th>
+      <th>Gays</th>
+      <th>Anal</th>
+      <th>Cumshots</th>
+      <th>Double Penetration</th>
+      <th>Brunettes</th>
+      <th>Cuckold</th>
+      <th>Japanese</th>
+      <th>Asian</th>
+      <th>BDSM</th>
+      <th>Black and Ebony</th>
+    </tr></thead>
+<tbody>
+<tr>
+<th>0</th>
+      <td> 1277794800</td>
+      <td> 17262</td>
+      <td>  120</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 1</td>
+    </tr>
+<tr>
+<th>2</th>
+      <td> 1265961600</td>
+      <td>  6060</td>
+      <td>  163</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+    </tr>
+<tr>
+<th>3</th>
+      <td> 1277794800</td>
+      <td> 12742</td>
+      <td> 1980</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+    </tr>
+<tr>
+<th>4</th>
+      <td> 1353225600</td>
+      <td> 32879</td>
+      <td> 1318</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+    </tr>
+<tr>
+<th>5</th>
+      <td> 1277794800</td>
+      <td> 33778</td>
+      <td>  625</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+    </tr>
+</tbody>
+</table>
+<p>5 rows × 93 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [7]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">cols</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">+</span><span class="p">[</span><span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">+</span><span class="n">cols</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">
+    Out[7]:</div>
+
+<div class="output_html rendered_html output_subarea output_pyout">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead><tr style="text-align: right;">
+<th></th>
+      <th>views</th>
+      <th>upload_date</th>
+      <th>runtime</th>
+      <th>Blondes</th>
+      <th>Matures</th>
+      <th>Ladyboys</th>
+      <th>Threesomes</th>
+      <th>MILFs</th>
+      <th>Gaping</th>
+      <th>Public Nudity</th>
+      <th>...</th>
+      <th>Gays</th>
+      <th>Anal</th>
+      <th>Cumshots</th>
+      <th>Double Penetration</th>
+      <th>Brunettes</th>
+      <th>Cuckold</th>
+      <th>Japanese</th>
+      <th>Asian</th>
+      <th>BDSM</th>
+      <th>Black and Ebony</th>
+    </tr></thead>
+<tbody>
+<tr>
+<th>0</th>
+      <td> 17262</td>
+      <td> 1277794800</td>
+      <td>  120</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 1</td>
+    </tr>
+<tr>
+<th>2</th>
+      <td>  6060</td>
+      <td> 1265961600</td>
+      <td>  163</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+    </tr>
+<tr>
+<th>3</th>
+      <td> 12742</td>
+      <td> 1277794800</td>
+      <td> 1980</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+    </tr>
+<tr>
+<th>4</th>
+      <td> 32879</td>
+      <td> 1353225600</td>
+      <td> 1318</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+    </tr>
+<tr>
+<th>5</th>
+      <td> 33778</td>
+      <td> 1277794800</td>
+      <td>  625</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>...</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+    </tr>
+</tbody>
+</table>
+<p>5 rows × 93 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [8]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]],</span> <span class="n">data</span><span class="p">[</span><span class="s">'views'</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here I attempt to split the data into training and test sets, with the test-set being 25% of the total data (default setting of the function). </p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [9]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span> <span class="p">,</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">'Random Forest Regressor Accuracy:  '</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Random Forest Regressor Accuracy:   0.180421403192
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [10]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">clf</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">'Linear Regression Accuracy: '</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">"Single Linear Regression Model Accuracy: "</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Linear Regression Accuracy:  0.0210846312626
+Single Linear Regression Model Accuracy:  0.158606483576
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It turns out that categories alone do not do well in predicting viewcount. It is worth expanding the database to include the actors/actresses to add as a column space for better regression results, but the dataset does not feature such knowledge.</p>
+<p>Further improvements might also be seen with polynomial features, but for some reason ipython notebook is tending towards crashing mid-way through the execution. Properly cleaning the titles and descriptions would aid as another bit of information to gain from this study, but that's beyond my short-term goal of demonstrating the relationship between categories and viewcount.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="SO-WHAT?">SO WHAT?<a class="anchor-link" href="machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html#SO-WHAT?">¶</a>
+</h3>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If anyone from MindGeek wants to hire an interested data scientist, email me at programminglinguist@gmail.com</p>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../categories/data.html" rel="tag">data</a></li>
+            <li><a class="tag p-category" href="../categories/learning.html" rel="tag">learning</a></li>
+            <li><a class="tag p-category" href="../categories/machine.html" rel="tag">machine</a></li>
+            <li><a class="tag p-category" href="../categories/mining.html" rel="tag">mining</a></li>
+            <li><a class="tag p-category" href="../categories/pandas.html" rel="tag">pandas</a></li>
+            <li><a class="tag p-category" href="../categories/porn.html" rel="tag">porn</a></li>
+            <li><a class="tag p-category" href="../categories/python.html" rel="tag">python</a></li>
+            <li><a class="tag p-category" href="../categories/regression.html" rel="tag">regression</a></li>
+            <li><a class="tag p-category" href="../categories/scikit-learn.html" rel="tag">scikit-learn</a></li>
+            <li><a class="tag p-category" href="../categories/scikitlearn.html" rel="tag">scikitlearn</a></li>
+            <li><a class="tag p-category" href="../categories/sklearn.html" rel="tag">sklearn</a></li>
+            <li><a class="tag p-category" href="../categories/statistics.html" rel="tag">statistics</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="comic-book-data.html" rel="prev" title="Comic Book Data">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="scraping-images-with-python.html" rel="next" title="Scraping Images with Python">Next post</a>
+            </li>
+        </ul></nav></aside></article>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2016         <a href="mailto:programminglinguist@gmail.com">Allen</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../assets/js/jquery.min.js"></script><script src="../assets/js/bootstrap.min.js"></script><script src="../assets/js/moment-with-locales.min.js"></script><script src="../assets/js/fancydates.js"></script><script src="../assets/js/mathjax.js"></script><script src="../assets/js/jquery.colorbox-min.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59621225-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

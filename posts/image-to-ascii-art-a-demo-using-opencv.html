@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Making ASCII art with OpenCV by transforming images.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Image to Ascii Art - A Demo using OpenCV | Python Mining</title>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://pythonmining.com/posts/image-to-ascii-art-a-demo-using-opencv.html">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="Allen">
+<meta property="og:site_name" content="Python Mining">
+<meta property="og:title" content="Image to Ascii Art - A Demo using OpenCV">
+<meta property="og:url" content="http://pythonmining.com/posts/image-to-ascii-art-a-demo-using-opencv.html">
+<meta property="og:description" content="Making ASCII art with OpenCV by transforming images.">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2015-05-30T15:40:36-07:00">
+<meta property="article:tag" content="array">
+<meta property="article:tag" content="art">
+<meta property="article:tag" content="ascii">
+<meta property="article:tag" content="ascii-art-generator">
+<meta property="article:tag" content="generator">
+<meta property="article:tag" content="image">
+<meta property="article:tag" content="matrix">
+<meta property="article:tag" content="opencv">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="transform">
+<meta property="article:tag" content="tutorial">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://pythonmining.com/">
+
+                <span id="blog-title">Python Mining</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../stories/allen.html">About</a>
+                </li>
+<li>
+<a href="../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+<!-- Custom search --><form method="get" id="search" action="//duckduckgo.com/" class="navbar-form pull-left">
+<input type="hidden" name="sites" value="http://pythonmining.com/"><input type="hidden" name="k8" value="#444444"><input type="hidden" name="k9" value="#D51920"><input type="hidden" name="kt" value="h"><input type="text" name="q" maxlength="255" placeholder="Search…" class="span2" style="margin-top: 4px;"><input type="submit" value="DuckDuckGo Search" style="visibility: hidden;">
+</form>
+<!-- End of custom search -->
+
+
+            <ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="image-to-ascii-art-a-demo-using-opencv.ipynb" id="sourcelink">Source</a>
+    </li>
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Image to Ascii Art - A Demo using OpenCV</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                    Allen
+            </span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2015-05-30T15:40:36-07:00" itemprop="datePublished" title="2015-05-30 15:40">2015-05-30 15:40</time></a></p>
+                    <p class="sourceline"><a href="image-to-ascii-art-a-demo-using-opencv.ipynb" id="sourcelink">Source</a></p>
+
+                <meta name="description" itemprop="description" content="Making ASCII art with OpenCV by transforming images.">
+</div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [79]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">cv2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>See here, a tiny image of the football. The goal (dohohoho) is to transform this image into ascii art.</p>
+<p>Tools used:</p>
+<p>OpenCV for image reading, and the built-in numpy array of OpenCV.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="../galleries/image-to-ascii/football-ball.jpg"></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Images are typically represented by an array of numbers in the form of [R,G,B]</p>
+<p>Example: [0,255,17]</p>
+<p>That would be a more or less green pixel. </p>
+<p>A football it is ideal for working with grayscale since it is already black and white. A grayscale array of numbers is easier to work with because instead of 3 colors/values, we're working with one value per pixel (essentially saying how dark/light a pixel is going to show).</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [80]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s">"football-ball.jpg"</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">img</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+[[254 254 254 ..., 254 253 252]
+ [254 254 254 ..., 254 254 253]
+ [254 254 254 ..., 254 253 253]
+ ..., 
+ [254 254 254 ..., 254 254 254]
+ [254 254 254 ..., 254 254 254]
+ [254 254 254 ..., 254 254 254]]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<!-- TEASER_END -->
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [83]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">img</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">
+    Out[83]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+(30, 40)
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As expected, we have rows and columns of numbers. Exactly 30 rows and 40 columns because our image is 30x40 pixels.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To convert an image into ascii, we need to map/draw a letter or ascii symbol for each number in the image. It is also not displayed the same as an image because we're saving it to a text file or just printing it straight to the console.</p>
+<p>Below here I have a mapping set up for these numbers. I chose a very simple scheme to use:</p>
+<p>Numbers 0-180 are represented by a 'W'</p>
+<p>Numbers 180+ are represented by a '!'</p>
+<p>This essentially creates a binary ascii image since there are only two symbols at play in any transformation.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [81]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">setupAsciiMapping</span><span class="p">():</span>
+    <span class="n">characterSet</span> <span class="o">=</span> <span class="nb">list</span><span class="p">((</span><span class="s">'W'</span><span class="o">*</span><span class="mi">18</span><span class="p">)</span><span class="o">+</span><span class="s">'!!!!!!!!'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+            <span class="n">asciiToNum</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">characterSet</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="n">asciiToNum</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">setupAsciiMapping</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">asciiToNum</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+{0: 'W', 1: 'W', 2: 'W', 3: 'W', 4: 'W', 5: 'W', 6: 'W', 7: 'W', 8: 'W', 9: 'W', 10: 'W', 11: 'W', 12: 'W', 13: 'W', 14: 'W', 15: 'W', 16: 'W', 17: 'W', 18: 'W', 19: 'W', 20: 'W', 21: 'W', 22: 'W', 23: 'W', 24: 'W', 25: 'W', 26: 'W', 27: 'W', 28: 'W', 29: 'W', 30: 'W', 31: 'W', 32: 'W', 33: 'W', 34: 'W', 35: 'W', 36: 'W', 37: 'W', 38: 'W', 39: 'W', 40: 'W', 41: 'W', 42: 'W', 43: 'W', 44: 'W', 45: 'W', 46: 'W', 47: 'W', 48: 'W', 49: 'W', 50: 'W', 51: 'W', 52: 'W', 53: 'W', 54: 'W', 55: 'W', 56: 'W', 57: 'W', 58: 'W', 59: 'W', 60: 'W', 61: 'W', 62: 'W', 63: 'W', 64: 'W', 65: 'W', 66: 'W', 67: 'W', 68: 'W', 69: 'W', 70: 'W', 71: 'W', 72: 'W', 73: 'W', 74: 'W', 75: 'W', 76: 'W', 77: 'W', 78: 'W', 79: 'W', 80: 'W', 81: 'W', 82: 'W', 83: 'W', 84: 'W', 85: 'W', 86: 'W', 87: 'W', 88: 'W', 89: 'W', 90: 'W', 91: 'W', 92: 'W', 93: 'W', 94: 'W', 95: 'W', 96: 'W', 97: 'W', 98: 'W', 99: 'W', 100: 'W', 101: 'W', 102: 'W', 103: 'W', 104: 'W', 105: 'W', 106: 'W', 107: 'W', 108: 'W', 109: 'W', 110: 'W', 111: 'W', 112: 'W', 113: 'W', 114: 'W', 115: 'W', 116: 'W', 117: 'W', 118: 'W', 119: 'W', 120: 'W', 121: 'W', 122: 'W', 123: 'W', 124: 'W', 125: 'W', 126: 'W', 127: 'W', 128: 'W', 129: 'W', 130: 'W', 131: 'W', 132: 'W', 133: 'W', 134: 'W', 135: 'W', 136: 'W', 137: 'W', 138: 'W', 139: 'W', 140: 'W', 141: 'W', 142: 'W', 143: 'W', 144: 'W', 145: 'W', 146: 'W', 147: 'W', 148: 'W', 149: 'W', 150: 'W', 151: 'W', 152: 'W', 153: 'W', 154: 'W', 155: 'W', 156: 'W', 157: 'W', 158: 'W', 159: 'W', 160: 'W', 161: 'W', 162: 'W', 163: 'W', 164: 'W', 165: 'W', 166: 'W', 167: 'W', 168: 'W', 169: 'W', 170: 'W', 171: 'W', 172: 'W', 173: 'W', 174: 'W', 175: 'W', 176: 'W', 177: 'W', 178: 'W', 179: 'W', 180: '!', 181: '!', 182: '!', 183: '!', 184: '!', 185: '!', 186: '!', 187: '!', 188: '!', 189: '!', 190: '!', 191: '!', 192: '!', 193: '!', 194: '!', 195: '!', 196: '!', 197: '!', 198: '!', 199: '!', 200: '!', 201: '!', 202: '!', 203: '!', 204: '!', 205: '!', 206: '!', 207: '!', 208: '!', 209: '!', 210: '!', 211: '!', 212: '!', 213: '!', 214: '!', 215: '!', 216: '!', 217: '!', 218: '!', 219: '!', 220: '!', 221: '!', 222: '!', 223: '!', 224: '!', 225: '!', 226: '!', 227: '!', 228: '!', 229: '!', 230: '!', 231: '!', 232: '!', 233: '!', 234: '!', 235: '!', 236: '!', 237: '!', 238: '!', 239: '!', 240: '!', 241: '!', 242: '!', 243: '!', 244: '!', 245: '!', 246: '!', 247: '!', 248: '!', 249: '!', 250: '!', 251: '!', 252: '!', 253: '!', 254: '!', 255: '!', 256: '!', 257: '!', 258: '!', 259: '!'}
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Above here I automated the task of creating a dictionary for this mapping.</p>
+<p>Now onto the actual transformation...</p>
+<p>In the bottom and final block of code, we see here that I am iterating through the image row by row to transform each number into the appropriate symbol of 'W' or '!' and then appending that into a list, which is then added to the list of <b>transformedAscii</b>. The variable <b>transformedAscii</b> is a list of lists, where each list is a row. It is essentially an array of the transformed symbols.</p>
+<p>From that list, I join the characters into a long string, and add a new line character at the end of each row to display the string properly.</p>
+<p>Pretty picture!</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In [82]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">transformedAscii</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">img</span><span class="p">:</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">asciiToNum</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">transformedAscii</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+<span class="n">ascii</span> <span class="o">=</span> <span class="s">''</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">transformedAscii</span><span class="p">:</span>
+    <span class="n">ascii</span><span class="o">+=</span> <span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ascii</span><span class="o">+=</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span>
+
+<span class="k">print</span> <span class="n">ascii</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W W ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W W ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W W ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W W W ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W W W W W ! ! ! ! ! ! W W W ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W W W W W W W ! ! ! ! ! ! W W W ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! W ! ! ! ! W W W W W W W W ! ! ! ! ! ! ! W W ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! W ! ! ! ! W W W W W W W W ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! W W ! ! ! ! W W W W W W W W ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! W W ! ! ! ! W W W W W W W W ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! W ! ! ! ! ! ! W W W W W W ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! W ! ! ! ! ! ! ! W W ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! W ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W W ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W W W W W W ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W W W W W W ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W W W W W W ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W W W W W ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! W W W W W W ! ! ! ! ! ! ! W W W W W W ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! W W W W W W W ! ! ! ! ! ! W W W W W ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! W W W W W W W ! ! ! ! ! ! W W W ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! W W W W W W W ! ! W W W W W ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! W W W W W W W W W W W ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! W W W W ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../categories/array.html" rel="tag">array</a></li>
+            <li><a class="tag p-category" href="../categories/art.html" rel="tag">art</a></li>
+            <li><a class="tag p-category" href="../categories/ascii.html" rel="tag">ascii</a></li>
+            <li><a class="tag p-category" href="../categories/ascii-art-generator.html" rel="tag">ascii-art-generator</a></li>
+            <li><a class="tag p-category" href="../categories/generator.html" rel="tag">generator</a></li>
+            <li><a class="tag p-category" href="../categories/image.html" rel="tag">image</a></li>
+            <li><a class="tag p-category" href="../categories/matrix.html" rel="tag">matrix</a></li>
+            <li><a class="tag p-category" href="../categories/opencv.html" rel="tag">opencv</a></li>
+            <li><a class="tag p-category" href="../categories/python.html" rel="tag">python</a></li>
+            <li><a class="tag p-category" href="../categories/transform.html" rel="tag">transform</a></li>
+            <li><a class="tag p-category" href="../categories/tutorial.html" rel="tag">tutorial</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="complexity-of-algorithms-with-python.html" rel="prev" title="Complexity of Algorithms with Python">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="smoothing-noisy-data-with-polynomials.html" rel="next" title="Smoothing Noisy Data - with polynomials!">Next post</a>
+            </li>
+        </ul></nav></aside></article>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2016         <a href="mailto:programminglinguist@gmail.com">Allen</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../assets/js/jquery.min.js"></script><script src="../assets/js/bootstrap.min.js"></script><script src="../assets/js/moment-with-locales.min.js"></script><script src="../assets/js/fancydates.js"></script><script src="../assets/js/mathjax.js"></script><script src="../assets/js/jquery.colorbox-min.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59621225-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

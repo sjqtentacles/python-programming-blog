@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Python Mining (books)</title><link>http://pythonmining.com/</link><description></description><atom:link href="http://pythonmining.com/categories/books.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 17 Apr 2016 02:48:29 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Open Source Machine Learning Degree</title><link>http://pythonmining.com/posts/open-source-machine-learning-degree.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+    &lt;div class="container" id="notebook-container"&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;I made a new site called &lt;a href="http://nixonite.github.io/open-source-machine-learning-degree/"&gt;"Open Source Machine Learning Degree."&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It's a collection of &lt;b&gt;FREE AS IN FREE BEER&lt;/b&gt; books, lengthy notes, and a couple of small tutorial papers — all about machine learning.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/osmld/topics.png" align="left"&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+</description><category>books</category><category>degree</category><category>free</category><category>github</category><category>html</category><category>io</category><category>learning</category><category>machine</category><category>new</category><category>open</category><category>pages</category><category>pdf</category><category>source</category><category>tutorials</category><guid>http://pythonmining.com/posts/open-source-machine-learning-degree.html</guid><pubDate>Thu, 09 Jul 2015 02:31:47 GMT</pubDate></item><item><title>The Straightforward Guide to Data Science</title><link>http://pythonmining.com/posts/the-straightforward-guide-to-data-science.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+    &lt;div class="container" id="notebook-container"&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The best guide to getting into the field of data science has been a tiny repo on Github called "go" which can be seen &lt;a href="https://github.com/datasciencemasters/go"&gt;here.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Although it is a thorough guide, there's too much noise and it's actually overwhelming to see so many different topics to study at once. I have now compiled a shorter and more straightforward guide to getting into data science without sacrificing theory or practice. &lt;/p&gt;
+&lt;p&gt;I present to you, the straightforward guide to data science.&lt;/p&gt;
+&lt;ol&gt;
+&lt;h4&gt;Math&lt;/h4&gt;
+&lt;li&gt;Get acquainted with 3 courses of calculus (differential, integral, multivariate) and make sure to not skim over partial derivatives and gradients.
+&lt;/li&gt;&lt;li&gt;Learn about linear algebra. You don't need a proof based course, &lt;a href="http://smile.amazon.com/Linear-Algebra-Its-Applications-4th/dp/0030105676/ref=sr_1_1?s=books&amp;amp;ie=UTF8&amp;amp;qid=1427744788&amp;amp;sr=1-1&amp;amp;keywords=linear+algebra+and+applications"&gt;and a good book (any edition) for this is written by Gilbert Strang&lt;/a&gt;
+&lt;/li&gt;&lt;li&gt;Understand differential equations with &lt;a href="https://www.google.com/webhp?sourceid=chrome-instant&amp;amp;ion=1&amp;amp;espv=2&amp;amp;ie=UTF-8#q=boyce%20diprima%20differential%20equations%20pdf"&gt;this book (any edition)&lt;/a&gt;
+&lt;/li&gt;&lt;li&gt;Get some probability and statistics under your belt! I recommend &lt;a href="http://www.amazon.com/All-Statistics-Statistical-Inference-Springer/dp/0387402721"&gt;"All of Statistics" by Larry Wasserman.&lt;/a&gt; This is a hard book, so it's okay to only read the first part of it on Probability (section I up to ~87 pages?) for now. You will however want to read the rest of it for list item #9.
+
+&lt;h4&gt;Code&lt;/h4&gt;
+&lt;/li&gt;&lt;li&gt;You should absolutely know how to code in Python or R! It doesn't matter which you start with because after you've mastered one, you should learn the other... eventually. &lt;a href="http://learnpythonthehardway.org/"&gt;Here's&lt;/a&gt; where you should learn Python, and &lt;a href="http://www.ats.ucla.edu/stat/r/"&gt;here's&lt;/a&gt; where you should look to start learning R. Don't learn both at once since it will take away time from other studies.&lt;/li&gt;
+&lt;li&gt;Learn how to use the basic scientific tools of the language. As a Python person, this would be &lt;a href="http://www.numpy.org/"&gt;numpy&lt;/a&gt;, &lt;a href="http://www.scipy.org/"&gt;scipy&lt;/a&gt;, &lt;a href="http://matplotlib.org/"&gt;matplotlib&lt;/a&gt;, and &lt;a href="http://scikit-learn.org/stable/"&gt;scikit-learn.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Learn SQL from either &lt;a href="http://www.amazon.com/dp/0596520832/ref=wl_it_dp_o_pC_nS_img?_encoding=UTF8&amp;amp;colid=1OXMYVW6R7FEI&amp;amp;coliid=I1XY3C93V9W1NY"&gt;a book&lt;/a&gt; or some &lt;a href="http://www.tizag.com/sqlTutorial/"&gt;tutorials.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Before you can mess around with models, you have to clean the data. &lt;a href="http://smile.amazon.com/Python-Data-Analysis-Wrangling-IPython/dp/1449319793/ref=sr_1_1?ie=UTF8&amp;amp;qid=1427745734&amp;amp;sr=8-1&amp;amp;keywords=data+wrangling"&gt;Read a book on data wrangling, like this one.&lt;/a&gt;
+
+&lt;h4&gt;Gentle Guide to Data Analysis&lt;/h4&gt;
+&lt;/li&gt;&lt;li&gt;Study these books:&lt;ul&gt;
+                    &lt;li&gt;&lt;a href="http://www.amazon.com/Mastering-Machine-Learning-With-scikit-learn/dp/1783988363"&gt;Mastering Machine Learning with Scikit-Learn&lt;/a&gt; (uses Python)
+                    &lt;/li&gt;&lt;li&gt;&lt;a href="http://www-bcf.usc.edu/~gareth/ISL/"&gt;Introduction to Statistical Learning&lt;/a&gt; (uses R)
+                    &lt;/li&gt;&lt;/ul&gt;
+
+&lt;h4&gt;Hard Guide to Data Analysis&lt;/h4&gt;
+&lt;/li&gt;&lt;li&gt;&lt;ul&gt;Pick at least two: 
+&lt;li&gt;&lt;a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/"&gt;Elements of Statistical Learning&lt;/a&gt;
+&lt;/li&gt;&lt;li&gt;&lt;a href="http://smile.amazon.com/Introduction-Machine-Learning-Adaptive-Computation/dp/026201243X/ref=sr_1_2?ie=UTF8&amp;amp;qid=1428124640&amp;amp;sr=8-2&amp;amp;keywords=introduction+to+machine+learning"&gt;Introduction to Machine Learning (Adaptive Computation and Machine Learning Series)&lt;/a&gt;
+&lt;/li&gt;&lt;li&gt;&lt;a href="http://smile.amazon.com/Machine-Learning-Science-Algorithms-Sense/dp/1107422221/ref=sr_1_1?ie=UTF8&amp;amp;qid=1428174041&amp;amp;sr=8-1&amp;amp;keywords=machine+learning"&gt;Machine Learning: The Art and Science of Algorithms that Make Sense of Data&lt;/a&gt;
+&lt;/li&gt;&lt;/ul&gt;
+
+&lt;h4&gt;Pretty Pictures and More Tools&lt;/h4&gt;
+&lt;/li&gt;&lt;li&gt;Visualization: &lt;a href="http://d3js.org/"&gt;Learn how to use D3.js&lt;/a&gt; or an equivalent fancy-visuals tool.
+&lt;/li&gt;&lt;li&gt;Learn the other language (i.e. if you started with Python, now learn R)
+&lt;/li&gt;&lt;li&gt;Learn how to use MongoDB, and read a book on &lt;a href="http://www.amazon.com/Hadoop-Definitive-Guide-Tom-White/dp/1491901632"&gt;Hadoop.&lt;/a&gt;
+
+&lt;/li&gt;&lt;/ol&gt;
+
+
+&lt;p&gt;Congrats you're highly employable now!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+</description><category>books</category><category>data</category><category>guide</category><category>job</category><category>jobs</category><category>list</category><category>math</category><category>reading</category><category>required</category><category>science</category><category>straightforward</category><guid>http://pythonmining.com/posts/the-straightforward-guide-to-data-science.html</guid><pubDate>Mon, 30 Mar 2015 19:37:22 GMT</pubDate></item></channel></rss>

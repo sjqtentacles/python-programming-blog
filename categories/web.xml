@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Python Mining (web)</title><link>http://pythonmining.com/</link><description></description><atom:link href="http://pythonmining.com/categories/web.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 17 Apr 2016 02:48:29 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Runescape Data Mining</title><link>http://pythonmining.com/posts/runescape-data-mining.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+    &lt;div class="container" id="notebook-container"&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The Runescape API is a &lt;u&gt;disappointment&lt;/u&gt;, so I just scraped the market (Grand Exchange prices for items) data from the fan site at &lt;a href="http://www.grandexchangewatch.com/"&gt;GrandExchangeWatch&lt;/a&gt;. It took a couple of days to store years of item price data into a MongoDB collection, but there was also the problem of cleaning said data.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/runescape-data-mining/gewatch.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;After hours and hours of grueling labor, the mostly-clean dataset can be found on my Github page right over &lt;a href="https://github.com/Nixonite/Runescape-Grand-Exchange-Market-Data"&gt;here.&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/runescape-data-mining/datahead.png"&gt;&lt;/p&gt;
+&lt;p&gt;It comes with a ~30MB zip file which expands into a 3.5 million line CSV file (~300MB), and some notebooks for scraping the fan site, and a basic super simple analysis page which took my old dataset, cleaned it, and tossed a polynomial curve onto a single item's history.&lt;/p&gt;
+&lt;p&gt;Hope others can make good use of that dataset.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+</description><category>csv</category><category>data</category><category>dataset</category><category>economy</category><category>exchange</category><category>file</category><category>game</category><category>github</category><category>grand</category><category>learning</category><category>machine</category><category>mining</category><category>runescape</category><category>scraping</category><category>set</category><category>text</category><category>virtual</category><category>web</category><guid>http://pythonmining.com/posts/runescape-data-mining.html</guid><pubDate>Mon, 06 Jul 2015 20:19:49 GMT</pubDate></item><item><title>Scraping Images with Python</title><link>http://pythonmining.com/posts/scraping-images-with-python.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+    &lt;div class="container" id="notebook-container"&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;So let's say you know how to scrape a website for some super simple data, for example just text. How would you translate this into scraping images? Media? How about files in general? Let me show you...&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Here's-the-Code"&gt;Here's the Code&lt;a class="anchor-link" href="http://pythonmining.com/posts/scraping-images-with-python.html#Here's-the-Code"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In [10]:
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib&lt;/span&gt;
+
+&lt;span class="n"&gt;urllib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlretrieve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"http://imgs.xkcd.com/comics/barrel_cropped_(1).jpg"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                   &lt;span class="s"&gt;"../galleries/scraping-images-with-python/barrel.jpg"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+    Out[10]:&lt;/div&gt;
+
+
+&lt;div class="output_text output_subarea output_pyout"&gt;
+&lt;pre&gt;
+('../galleries/scraping-images-with-python/barrel.jpg',
+ &amp;lt;httplib.HTTPMessage instance at 0x107f68a28&amp;gt;)
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Result-and-Explanation"&gt;Result and Explanation&lt;a class="anchor-link" href="http://pythonmining.com/posts/scraping-images-with-python.html#Result-and-Explanation"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Go to &lt;a href="http://pythonmining.com/galleries/scraping-images-with-python/barrel.jpg"&gt;http://pythonmining.com/galleries/scraping-images-with-python/barrel.jpg&lt;/a&gt; to see the result.&lt;/p&gt;
+&lt;p&gt;So what just happened? I used a library called urllib. There's also a library called urllib2, and the 'requests' module is just a nicer module built on top of this more barebones urllib code. What happened was that I used the urllib library to fetch the file, and then save it locally to the galleries/..../barrel.jpg location. The first parameter recieves the url for the file, and the second writes to the location of choice.&lt;/p&gt;
+&lt;p&gt;Urllib is great for fetching files without messing with too much code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Another-Example"&gt;Another Example&lt;a class="anchor-link" href="http://pythonmining.com/posts/scraping-images-with-python.html#Another-Example"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In [11]:
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;urllib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlretrieve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"http://textfiles.com/art/girlface.txt"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                   &lt;span class="s"&gt;"../galleries/scraping-images-with-python/girlface.txt"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+    Out[11]:&lt;/div&gt;
+
+
+&lt;div class="output_text output_subarea output_pyout"&gt;
+&lt;pre&gt;
+('../galleries/scraping-images-with-python/girlface.txt',
+ &amp;lt;httplib.HTTPMessage instance at 0x107f68d88&amp;gt;)
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;This saves the file, and if you just want to &lt;/p&gt;&lt;p&gt;&lt;a href="http://pythonmining.com/posts/scraping-images-with-python.html"&gt;Read more…&lt;/a&gt; (7 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>beautiful</category><category>bs4</category><category>images</category><category>python</category><category>requests</category><category>scraping</category><category>soup</category><category>textfiles</category><category>urllib</category><category>urllib2</category><category>web</category><guid>http://pythonmining.com/posts/scraping-images-with-python.html</guid><pubDate>Tue, 05 May 2015 03:47:19 GMT</pubDate></item><item><title>Comic Book Data</title><link>http://pythonmining.com/posts/comic-book-data.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+    &lt;div class="container" id="notebook-container"&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;I have here a somewhat decent compiled list of comic book data sources for interested parties to analyze. I'm a huge fan of anything Thanos or Warlock related, so naturally comic book data analysis piques my interest.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Marvel-Developer-API"&gt;&lt;a href="http://developer.marvel.com/"&gt;Marvel Developer API&lt;/a&gt;&lt;a class="anchor-link" href="http://pythonmining.com/posts/comic-book-data.html#Marvel-Developer-API"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/comic-book-data/marvel-api.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;First thing's first, I love Marvel's space opera. Thanos, Warlock, Surfer, Galactus, even Pip the Troll. Everything about space opera is exciting because it's all hugely important in the universe of these characters.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://pythonmining.com/posts/comic-book-data.html"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>api</category><category>book</category><category>comic</category><category>data</category><category>mining</category><category>python</category><category>scraping</category><category>web</category><guid>http://pythonmining.com/posts/comic-book-data.html</guid><pubDate>Sun, 12 Apr 2015 08:37:20 GMT</pubDate></item><item><title>How to scrape XKCD comics</title><link>http://pythonmining.com/posts/how-to-scrape-xkcd-comics.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+    &lt;div class="container" id="notebook-container"&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The first step in any web scraping adventure is to figure out where the hell the data is hiding, and how you can systematically access it. Let’s look at an XKCD page. The pattern is that the url increments by 1 with each comic&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://xkcd.com/1/"&gt;http://xkcd.com/1/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://xkcd.com/2/"&gt;http://xkcd.com/2/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://xkcd.com/3/"&gt;http://xkcd.com/3/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;and so on.&lt;/p&gt;
+&lt;p&gt;If you try to search for all “img” tags then you’ll fail for the reason that the header includes an image too. Instead you should look at the html source for something unique about the comics. Let’s see….&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/xkcd-scraper/xkcd-scrape-screenshot.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Aha! It seems that the comic is wrapped inside a div tag with a unique “comic” id.&lt;/p&gt;
+&lt;p&gt;Let’s get started then:&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In [3]:
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;bs4&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;
+
+&lt;span class="n"&gt;page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"http://xkcd.com/1"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;
+
+&lt;span class="n"&gt;soup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;comicImageBlock&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"div"&lt;/span&gt;&lt;span class="p"&gt;,{&lt;/span&gt;&lt;span class="s"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;"comic"&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+
+&lt;span class="n"&gt;comicImageTag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;comicImageBlock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"img"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;comicURL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;comicImageTag&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'src'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;comicURL&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;
+//imgs.xkcd.com/comics/barrel_cropped_(1).jpg
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;What just happened?&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://pythonmining.com/posts/how-to-scrape-xkcd-comics.html"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>beautiful</category><category>beautifulsoup</category><category>comics</category><category>data</category><category>downloading</category><category>image</category><category>mining</category><category>python</category><category>requests</category><category>scrape</category><category>soup</category><category>urllib</category><category>urllib2</category><category>web</category><category>xkcd</category><guid>http://pythonmining.com/posts/how-to-scrape-xkcd-comics.html</guid><pubDate>Mon, 30 Mar 2015 06:53:03 GMT</pubDate></item></channel></rss>

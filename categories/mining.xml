@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Python Mining (mining)</title><link>http://pythonmining.com/</link><description></description><atom:link href="http://pythonmining.com/categories/mining.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 17 Apr 2016 02:48:30 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Runescape Data Mining</title><link>http://pythonmining.com/posts/runescape-data-mining.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+    &lt;div class="container" id="notebook-container"&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The Runescape API is a &lt;u&gt;disappointment&lt;/u&gt;, so I just scraped the market (Grand Exchange prices for items) data from the fan site at &lt;a href="http://www.grandexchangewatch.com/"&gt;GrandExchangeWatch&lt;/a&gt;. It took a couple of days to store years of item price data into a MongoDB collection, but there was also the problem of cleaning said data.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/runescape-data-mining/gewatch.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;After hours and hours of grueling labor, the mostly-clean dataset can be found on my Github page right over &lt;a href="https://github.com/Nixonite/Runescape-Grand-Exchange-Market-Data"&gt;here.&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/runescape-data-mining/datahead.png"&gt;&lt;/p&gt;
+&lt;p&gt;It comes with a ~30MB zip file which expands into a 3.5 million line CSV file (~300MB), and some notebooks for scraping the fan site, and a basic super simple analysis page which took my old dataset, cleaned it, and tossed a polynomial curve onto a single item's history.&lt;/p&gt;
+&lt;p&gt;Hope others can make good use of that dataset.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+</description><category>csv</category><category>data</category><category>dataset</category><category>economy</category><category>exchange</category><category>file</category><category>game</category><category>github</category><category>grand</category><category>learning</category><category>machine</category><category>mining</category><category>runescape</category><category>scraping</category><category>set</category><category>text</category><category>virtual</category><category>web</category><guid>http://pythonmining.com/posts/runescape-data-mining.html</guid><pubDate>Mon, 06 Jul 2015 20:19:49 GMT</pubDate></item><item><title>Machine Learning with Porn - xHamster Data, Sexualitics, and Regression</title><link>http://pythonmining.com/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+    &lt;div class="container" id="notebook-container"&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Let me start off by saying that this dataset is available thanks to the great efforts of Antoine Mazières and his colleagues over at &lt;a href="http://sexualitics.org/"&gt;Sexualitics&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Their research involved the mining of porn metadata to gain insights into trends in fetishes, a fascinating network analysis with a nice little web-tool available on their website. My small contribution to the project in this analysis is to use their data (part of it) to try and predict video viewcounts based on other available information - in some sense predicting the popularity of a video based on its category. The results are rather disappointing, but the methods and analysis are here for others to expand on if they wish.&lt;/p&gt;
+&lt;p&gt;The main labor in this analysis involves massive cleaning, one-hot encoding, and Random Forest Regression (although a simple multiple linear regression works surprisingly well too). The dataset consists of about 700k records which makes for incredibly difficult computation.&lt;/p&gt;
+&lt;p&gt;Anyway, let's start.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In [1]:
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;isnan&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.ensemble&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RandomForestRegressor&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.metrics&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;metrics&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.cross_validation&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cross_val_score&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.cross_validation&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.decomposition&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;PCA&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.cluster&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;KMeans&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.linear_model&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;LinearRegression&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.linear_model&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Ridge&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.preprocessing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;PolynomialFeatures&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.pipeline&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;make_pipeline&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
+
+&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;matplotlib&lt;/span&gt; &lt;span class="n"&gt;inline&lt;/span&gt;
+
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'xhamster.csv'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;]]]&lt;/span&gt;
+&lt;span class="n"&gt;newCol&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;
+&lt;span class="n"&gt;newCol&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'category'&lt;/span&gt;
+&lt;span class="n"&gt;newCol&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'views'&lt;/span&gt;
+&lt;span class="n"&gt;newCol&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'votes'&lt;/span&gt;
+&lt;span class="n"&gt;newCol&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'comments'&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;newCol&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;
+Index([u'upload_date', u'category', u'views', u'votes', u'comments', u'runtime'], dtype='object')
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+    Out[1]:&lt;/div&gt;
+
+&lt;div class="output_html rendered_html output_subarea output_pyout"&gt;
+&lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;upload_date&lt;/th&gt;
+      &lt;th&gt;category&lt;/th&gt;
+      &lt;th&gt;views&lt;/th&gt;
+      &lt;th&gt;votes&lt;/th&gt;
+      &lt;th&gt;comments&lt;/th&gt;
+      &lt;th&gt;runtime&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt; 2010-06-29&lt;/td&gt;
+      &lt;td&gt; ['BBW', 'Black and Ebony', 'Interracial']&lt;/td&gt;
+      &lt;td&gt;  17262&lt;/td&gt;
+      &lt;td&gt;  65&lt;/td&gt;
+      &lt;td&gt;  11&lt;/td&gt;
+      &lt;td&gt;  120&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt; 2010-11-07&lt;/td&gt;
+      &lt;td&gt;                          ['Masturbation']&lt;/td&gt;
+      &lt;td&gt;    953&lt;/td&gt;
+      &lt;td&gt;   3&lt;/td&gt;
+      &lt;td&gt; NaN&lt;/td&gt;
+      &lt;td&gt;   15&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt; 2010-02-12&lt;/td&gt;
+      &lt;td&gt;             ['Babes', 'Teens', 'Webcams']&lt;/td&gt;
+      &lt;td&gt;   6060&lt;/td&gt;
+      &lt;td&gt;  11&lt;/td&gt;
+      &lt;td&gt;   3&lt;/td&gt;
+      &lt;td&gt;  163&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt; 2010-06-29&lt;/td&gt;
+      &lt;td&gt;                                   ['Men']&lt;/td&gt;
+      &lt;td&gt;  12742&lt;/td&gt;
+      &lt;td&gt;  87&lt;/td&gt;
+      &lt;td&gt;  15&lt;/td&gt;
+      &lt;td&gt; 1980&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt; 2012-11-18&lt;/td&gt;
+      &lt;td&gt;                                  ['Gays']&lt;/td&gt;
+      &lt;td&gt;  32879&lt;/td&gt;
+      &lt;td&gt;  75&lt;/td&gt;
+      &lt;td&gt;   6&lt;/td&gt;
+      &lt;td&gt; 1318&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;5&lt;/th&gt;
+      &lt;td&gt; 2010-06-29&lt;/td&gt;
+      &lt;td&gt;                     ['Amateur', 'Voyeur']&lt;/td&gt;
+      &lt;td&gt;  33778&lt;/td&gt;
+      &lt;td&gt;  62&lt;/td&gt;
+      &lt;td&gt;   8&lt;/td&gt;
+      &lt;td&gt;  625&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;6&lt;/th&gt;
+      &lt;td&gt; 2010-06-29&lt;/td&gt;
+      &lt;td&gt;                              ['Shemales']&lt;/td&gt;
+      &lt;td&gt;  38515&lt;/td&gt;
+      &lt;td&gt; 434&lt;/td&gt;
+      &lt;td&gt; 111&lt;/td&gt;
+      &lt;td&gt;  105&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;7&lt;/th&gt;
+      &lt;td&gt; 2008-12-06&lt;/td&gt;
+      &lt;td&gt;                               ['Amateur']&lt;/td&gt;
+      &lt;td&gt; 122575&lt;/td&gt;
+      &lt;td&gt; 206&lt;/td&gt;
+      &lt;td&gt;   3&lt;/td&gt;
+      &lt;td&gt;  289&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;8&lt;/th&gt;
+      &lt;td&gt; 2008-12-06&lt;/td&gt;
+      &lt;td&gt;                           ['Hidden Cams']&lt;/td&gt;
+      &lt;td&gt; 114082&lt;/td&gt;
+      &lt;td&gt; 124&lt;/td&gt;
+      &lt;td&gt;  13&lt;/td&gt;
+      &lt;td&gt; 2774&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;9&lt;/th&gt;
+      &lt;td&gt; 2012-07-02&lt;/td&gt;
+      &lt;td&gt;       ['Celebrities', 'MILFs', 'Vintage']&lt;/td&gt;
+      &lt;td&gt;   4605&lt;/td&gt;
+      &lt;td&gt;  40&lt;/td&gt;
+      &lt;td&gt;  25&lt;/td&gt;
+      &lt;td&gt;  172&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;So here we see a cut-down version of the original dataset. I wasn't a fan of the original labeling of 'nb_comments' and such so I just renamed them to regular old 'comments,' and I then cut down the title, description, and uploader columns. I figured that categories would be enough since I was already intending on using one-hot encoding for category names. The descriptions and titles would add unnecessary columns in my view. The above display is what I have so far, I then tried to cut out some bad data - as you can see there is a NaN entry in row 1 (index 1).&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://pythonmining.com/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html"&gt;Read more…&lt;/a&gt; (5 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>data</category><category>learning</category><category>machine</category><category>mining</category><category>pandas</category><category>porn</category><category>python</category><category>regression</category><category>scikit-learn</category><category>scikitlearn</category><category>sklearn</category><category>statistics</category><guid>http://pythonmining.com/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html</guid><pubDate>Thu, 30 Apr 2015 11:45:44 GMT</pubDate></item><item><title>Comic Book Data</title><link>http://pythonmining.com/posts/comic-book-data.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+    &lt;div class="container" id="notebook-container"&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;I have here a somewhat decent compiled list of comic book data sources for interested parties to analyze. I'm a huge fan of anything Thanos or Warlock related, so naturally comic book data analysis piques my interest.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Marvel-Developer-API"&gt;&lt;a href="http://developer.marvel.com/"&gt;Marvel Developer API&lt;/a&gt;&lt;a class="anchor-link" href="http://pythonmining.com/posts/comic-book-data.html#Marvel-Developer-API"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/comic-book-data/marvel-api.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;First thing's first, I love Marvel's space opera. Thanos, Warlock, Surfer, Galactus, even Pip the Troll. Everything about space opera is exciting because it's all hugely important in the universe of these characters.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://pythonmining.com/posts/comic-book-data.html"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>api</category><category>book</category><category>comic</category><category>data</category><category>mining</category><category>python</category><category>scraping</category><category>web</category><guid>http://pythonmining.com/posts/comic-book-data.html</guid><pubDate>Sun, 12 Apr 2015 08:37:20 GMT</pubDate></item><item><title>How to scrape XKCD comics</title><link>http://pythonmining.com/posts/how-to-scrape-xkcd-comics.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+    &lt;div class="container" id="notebook-container"&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The first step in any web scraping adventure is to figure out where the hell the data is hiding, and how you can systematically access it. Let’s look at an XKCD page. The pattern is that the url increments by 1 with each comic&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://xkcd.com/1/"&gt;http://xkcd.com/1/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://xkcd.com/2/"&gt;http://xkcd.com/2/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://xkcd.com/3/"&gt;http://xkcd.com/3/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;and so on.&lt;/p&gt;
+&lt;p&gt;If you try to search for all “img” tags then you’ll fail for the reason that the header includes an image too. Instead you should look at the html source for something unique about the comics. Let’s see….&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/xkcd-scraper/xkcd-scrape-screenshot.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Aha! It seems that the comic is wrapped inside a div tag with a unique “comic” id.&lt;/p&gt;
+&lt;p&gt;Let’s get started then:&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In [3]:
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;bs4&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;
+
+&lt;span class="n"&gt;page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"http://xkcd.com/1"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;
+
+&lt;span class="n"&gt;soup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;comicImageBlock&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"div"&lt;/span&gt;&lt;span class="p"&gt;,{&lt;/span&gt;&lt;span class="s"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;"comic"&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+
+&lt;span class="n"&gt;comicImageTag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;comicImageBlock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"img"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;comicURL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;comicImageTag&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'src'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;comicURL&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;
+//imgs.xkcd.com/comics/barrel_cropped_(1).jpg
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;What just happened?&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://pythonmining.com/posts/how-to-scrape-xkcd-comics.html"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>beautiful</category><category>beautifulsoup</category><category>comics</category><category>data</category><category>downloading</category><category>image</category><category>mining</category><category>python</category><category>requests</category><category>scrape</category><category>soup</category><category>urllib</category><category>urllib2</category><category>web</category><category>xkcd</category><guid>http://pythonmining.com/posts/how-to-scrape-xkcd-comics.html</guid><pubDate>Mon, 30 Mar 2015 06:53:03 GMT</pubDate></item></channel></rss>

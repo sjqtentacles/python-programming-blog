@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Python Mining (soup)</title><link>http://pythonmining.com/</link><description></description><atom:link href="http://pythonmining.com/categories/soup.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 17 Apr 2016 02:48:30 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Scraping Images with Python</title><link>http://pythonmining.com/posts/scraping-images-with-python.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Python Mining (soup)</title><link>http://nixonite.github.io/</link><description></description><atom:link href="http://nixonite.github.io/categories/soup.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 17 Apr 2016 03:01:23 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Scraping Images with Python</title><link>http://nixonite.github.io/posts/scraping-images-with-python.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -16,7 +16,7 @@
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Here's-the-Code"&gt;Here's the Code&lt;a class="anchor-link" href="http://pythonmining.com/posts/scraping-images-with-python.html#Here's-the-Code"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="Here's-the-Code"&gt;Here's the Code&lt;a class="anchor-link" href="http://nixonite.github.io/posts/scraping-images-with-python.html#Here's-the-Code"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -64,7 +64,7 @@ In [10]:
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Result-and-Explanation"&gt;Result and Explanation&lt;a class="anchor-link" href="http://pythonmining.com/posts/scraping-images-with-python.html#Result-and-Explanation"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="Result-and-Explanation"&gt;Result and Explanation&lt;a class="anchor-link" href="http://nixonite.github.io/posts/scraping-images-with-python.html#Result-and-Explanation"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -85,7 +85,7 @@ In [10]:
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Another-Example"&gt;Another Example&lt;a class="anchor-link" href="http://pythonmining.com/posts/scraping-images-with-python.html#Another-Example"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="Another-Example"&gt;Another Example&lt;a class="anchor-link" href="http://nixonite.github.io/posts/scraping-images-with-python.html#Another-Example"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -131,7 +131,7 @@ In [11]:
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;This saves the file, and if you just want to &lt;/p&gt;&lt;p&gt;&lt;a href="http://pythonmining.com/posts/scraping-images-with-python.html"&gt;Read more…&lt;/a&gt; (7 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>beautiful</category><category>bs4</category><category>images</category><category>python</category><category>requests</category><category>scraping</category><category>soup</category><category>textfiles</category><category>urllib</category><category>urllib2</category><category>web</category><guid>http://pythonmining.com/posts/scraping-images-with-python.html</guid><pubDate>Tue, 05 May 2015 03:47:19 GMT</pubDate></item><item><title>How to scrape XKCD comics</title><link>http://pythonmining.com/posts/how-to-scrape-xkcd-comics.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+&lt;p&gt;This saves the file, and if you just want to &lt;/p&gt;&lt;p&gt;&lt;a href="http://nixonite.github.io/posts/scraping-images-with-python.html"&gt;Read more…&lt;/a&gt; (7 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>beautiful</category><category>bs4</category><category>images</category><category>python</category><category>requests</category><category>scraping</category><category>soup</category><category>textfiles</category><category>urllib</category><category>urllib2</category><category>web</category><guid>http://nixonite.github.io/posts/scraping-images-with-python.html</guid><pubDate>Tue, 05 May 2015 03:47:19 GMT</pubDate></item><item><title>How to scrape XKCD comics</title><link>http://nixonite.github.io/posts/how-to-scrape-xkcd-comics.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -145,7 +145,7 @@ In [11]:
 &lt;p&gt;&lt;a href="http://xkcd.com/3/"&gt;http://xkcd.com/3/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;and so on.&lt;/p&gt;
 &lt;p&gt;If you try to search for all “img” tags then you’ll fail for the reason that the header includes an image too. Instead you should look at the html source for something unique about the comics. Let’s see….&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/xkcd-scraper/xkcd-scrape-screenshot.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://nixonite.github.io/galleries/xkcd-scraper/xkcd-scrape-screenshot.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;Aha! It seems that the comic is wrapped inside a div tag with a unique “comic” id.&lt;/p&gt;
 &lt;p&gt;Let’s get started then:&lt;/p&gt;
 &lt;/div&gt;
@@ -201,4 +201,4 @@ In [3]:
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;What just happened?&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://pythonmining.com/posts/how-to-scrape-xkcd-comics.html"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>beautiful</category><category>beautifulsoup</category><category>comics</category><category>data</category><category>downloading</category><category>image</category><category>mining</category><category>python</category><category>requests</category><category>scrape</category><category>soup</category><category>urllib</category><category>urllib2</category><category>web</category><category>xkcd</category><guid>http://pythonmining.com/posts/how-to-scrape-xkcd-comics.html</guid><pubDate>Mon, 30 Mar 2015 06:53:03 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;a href="http://nixonite.github.io/posts/how-to-scrape-xkcd-comics.html"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>beautiful</category><category>beautifulsoup</category><category>comics</category><category>data</category><category>downloading</category><category>image</category><category>mining</category><category>python</category><category>requests</category><category>scrape</category><category>soup</category><category>urllib</category><category>urllib2</category><category>web</category><category>xkcd</category><guid>http://nixonite.github.io/posts/how-to-scrape-xkcd-comics.html</guid><pubDate>Mon, 30 Mar 2015 06:53:03 GMT</pubDate></item></channel></rss>

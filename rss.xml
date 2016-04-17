@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Python Mining</title><link>http://pythonmining.com/</link><description>Data, web, cats, and Python.</description><atom:link href="http://pythonmining.com/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 17 Apr 2016 02:48:30 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Open Source Machine Learning Degree</title><link>http://pythonmining.com/posts/open-source-machine-learning-degree.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Python Mining</title><link>http://nixonite.github.io/</link><description>Data, web, cats, and Python.</description><atom:link href="http://nixonite.github.io/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 17 Apr 2016 03:01:23 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Open Source Machine Learning Degree</title><link>http://nixonite.github.io/posts/open-source-machine-learning-degree.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -9,14 +9,14 @@
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;I made a new site called &lt;a href="http://nixonite.github.io/open-source-machine-learning-degree/"&gt;"Open Source Machine Learning Degree."&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;It's a collection of &lt;b&gt;FREE AS IN FREE BEER&lt;/b&gt; books, lengthy notes, and a couple of small tutorial papers — all about machine learning.&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/osmld/topics.png" align="left"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://nixonite.github.io/galleries/osmld/topics.png" align="left"&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-</description><category>books</category><category>degree</category><category>free</category><category>github</category><category>html</category><category>io</category><category>learning</category><category>machine</category><category>new</category><category>open</category><category>pages</category><category>pdf</category><category>source</category><category>tutorials</category><guid>http://pythonmining.com/posts/open-source-machine-learning-degree.html</guid><pubDate>Thu, 09 Jul 2015 02:31:47 GMT</pubDate></item><item><title>Runescape Data Mining</title><link>http://pythonmining.com/posts/runescape-data-mining.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+</description><category>books</category><category>degree</category><category>free</category><category>github</category><category>html</category><category>io</category><category>learning</category><category>machine</category><category>new</category><category>open</category><category>pages</category><category>pdf</category><category>source</category><category>tutorials</category><guid>http://nixonite.github.io/posts/open-source-machine-learning-degree.html</guid><pubDate>Thu, 09 Jul 2015 02:31:47 GMT</pubDate></item><item><title>Runescape Data Mining</title><link>http://nixonite.github.io/posts/runescape-data-mining.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -25,9 +25,9 @@
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;The Runescape API is a &lt;u&gt;disappointment&lt;/u&gt;, so I just scraped the market (Grand Exchange prices for items) data from the fan site at &lt;a href="http://www.grandexchangewatch.com/"&gt;GrandExchangeWatch&lt;/a&gt;. It took a couple of days to store years of item price data into a MongoDB collection, but there was also the problem of cleaning said data.&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/runescape-data-mining/gewatch.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://nixonite.github.io/galleries/runescape-data-mining/gewatch.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;b&gt;After hours and hours of grueling labor, the mostly-clean dataset can be found on my Github page right over &lt;a href="https://github.com/Nixonite/Runescape-Grand-Exchange-Market-Data"&gt;here.&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/runescape-data-mining/datahead.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://nixonite.github.io/galleries/runescape-data-mining/datahead.png"&gt;&lt;/p&gt;
 &lt;p&gt;It comes with a ~30MB zip file which expands into a 3.5 million line CSV file (~300MB), and some notebooks for scraping the fan site, and a basic super simple analysis page which took my old dataset, cleaned it, and tossed a polynomial curve onto a single item's history.&lt;/p&gt;
 &lt;p&gt;Hope others can make good use of that dataset.&lt;/p&gt;
 
@@ -36,7 +36,7 @@
 &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-</description><category>csv</category><category>data</category><category>dataset</category><category>economy</category><category>exchange</category><category>file</category><category>game</category><category>github</category><category>grand</category><category>learning</category><category>machine</category><category>mining</category><category>runescape</category><category>scraping</category><category>set</category><category>text</category><category>virtual</category><category>web</category><guid>http://pythonmining.com/posts/runescape-data-mining.html</guid><pubDate>Mon, 06 Jul 2015 20:19:49 GMT</pubDate></item><item><title>Smoothing Noisy Data - with polynomials!</title><link>http://pythonmining.com/posts/smoothing-noisy-data-with-polynomials.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+</description><category>csv</category><category>data</category><category>dataset</category><category>economy</category><category>exchange</category><category>file</category><category>game</category><category>github</category><category>grand</category><category>learning</category><category>machine</category><category>mining</category><category>runescape</category><category>scraping</category><category>set</category><category>text</category><category>virtual</category><category>web</category><guid>http://nixonite.github.io/posts/runescape-data-mining.html</guid><pubDate>Mon, 06 Jul 2015 20:19:49 GMT</pubDate></item><item><title>Smoothing Noisy Data - with polynomials!</title><link>http://nixonite.github.io/posts/smoothing-noisy-data-with-polynomials.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
@@ -127,7 +127,7 @@
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h4 id="Copy-and-paste-the-above-function-into-your-code-base,-and-just-apply-it-as-shown-below-in-one-line."&gt;Copy and paste the above function into your code base, and just apply it as shown below in one line.&lt;a class="anchor-link" href="http://pythonmining.com/posts/smoothing-noisy-data-with-polynomials.html#Copy-and-paste-the-above-function-into-your-code-base,-and-just-apply-it-as-shown-below-in-one-line."&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id="Copy-and-paste-the-above-function-into-your-code-base,-and-just-apply-it-as-shown-below-in-one-line."&gt;Copy and paste the above function into your code base, and just apply it as shown below in one line.&lt;a class="anchor-link" href="http://nixonite.github.io/posts/smoothing-noisy-data-with-polynomials.html#Copy-and-paste-the-above-function-into-your-code-base,-and-just-apply-it-as-shown-below-in-one-line."&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -177,13 +177,13 @@
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h4 id="Neat."&gt;Neat.&lt;a class="anchor-link" href="http://pythonmining.com/posts/smoothing-noisy-data-with-polynomials.html#Neat."&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id="Neat."&gt;Neat.&lt;a class="anchor-link" href="http://nixonite.github.io/posts/smoothing-noisy-data-with-polynomials.html#Neat."&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-</description><category>data</category><category>filter</category><category>golay</category><category>noise</category><category>polynomial</category><category>savitzky</category><category>smoothing</category><guid>http://pythonmining.com/posts/smoothing-noisy-data-with-polynomials.html</guid><pubDate>Mon, 06 Jul 2015 20:16:49 GMT</pubDate></item><item><title>Image to Ascii Art - A Demo using OpenCV</title><link>http://pythonmining.com/posts/image-to-ascii-art-a-demo-using-opencv.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+</description><category>data</category><category>filter</category><category>golay</category><category>noise</category><category>polynomial</category><category>savitzky</category><category>smoothing</category><guid>http://nixonite.github.io/posts/smoothing-noisy-data-with-polynomials.html</guid><pubDate>Mon, 06 Jul 2015 20:16:49 GMT</pubDate></item><item><title>Image to Ascii Art - A Demo using OpenCV</title><link>http://nixonite.github.io/posts/image-to-ascii-art-a-demo-using-opencv.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
@@ -217,7 +217,7 @@ In [79]:
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/image-to-ascii/football-ball.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://nixonite.github.io/galleries/image-to-ascii/football-ball.jpg"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -276,7 +276,7 @@ In [80]:
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;&lt;a href="http://pythonmining.com/posts/image-to-ascii-art-a-demo-using-opencv.html"&gt;Read more…&lt;/a&gt; (10 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>array</category><category>art</category><category>ascii</category><category>ascii-art-generator</category><category>generator</category><category>image</category><category>matrix</category><category>opencv</category><category>python</category><category>transform</category><category>tutorial</category><guid>http://pythonmining.com/posts/image-to-ascii-art-a-demo-using-opencv.html</guid><pubDate>Sat, 30 May 2015 22:40:36 GMT</pubDate></item><item><title>Complexity of Algorithms with Python</title><link>http://pythonmining.com/posts/complexity-of-algorithms-with-python.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+&lt;p&gt;&lt;a href="http://nixonite.github.io/posts/image-to-ascii-art-a-demo-using-opencv.html"&gt;Read more…&lt;/a&gt; (10 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>array</category><category>art</category><category>ascii</category><category>ascii-art-generator</category><category>generator</category><category>image</category><category>matrix</category><category>opencv</category><category>python</category><category>transform</category><category>tutorial</category><guid>http://nixonite.github.io/posts/image-to-ascii-art-a-demo-using-opencv.html</guid><pubDate>Sat, 30 May 2015 22:40:36 GMT</pubDate></item><item><title>Complexity of Algorithms with Python</title><link>http://nixonite.github.io/posts/complexity-of-algorithms-with-python.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -496,7 +496,7 @@ $$&lt;/p&gt;
 &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-</description><category>algorithms</category><category>analysis</category><category>big</category><category>bigO</category><category>complexity</category><category>insertion</category><category>insertionsort</category><category>math</category><category>matplotlib</category><category>merge</category><category>mergesort</category><category>o</category><category>python</category><category>quick</category><category>quicksort</category><category>sort</category><category>sorting</category><guid>http://pythonmining.com/posts/complexity-of-algorithms-with-python.html</guid><pubDate>Mon, 25 May 2015 01:57:01 GMT</pubDate></item><item><title>Scraping Images with Python</title><link>http://pythonmining.com/posts/scraping-images-with-python.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+</description><category>algorithms</category><category>analysis</category><category>big</category><category>bigO</category><category>complexity</category><category>insertion</category><category>insertionsort</category><category>math</category><category>matplotlib</category><category>merge</category><category>mergesort</category><category>o</category><category>python</category><category>quick</category><category>quicksort</category><category>sort</category><category>sorting</category><guid>http://nixonite.github.io/posts/complexity-of-algorithms-with-python.html</guid><pubDate>Mon, 25 May 2015 01:57:01 GMT</pubDate></item><item><title>Scraping Images with Python</title><link>http://nixonite.github.io/posts/scraping-images-with-python.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -513,7 +513,7 @@ $$&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Here's-the-Code"&gt;Here's the Code&lt;a class="anchor-link" href="http://pythonmining.com/posts/scraping-images-with-python.html#Here's-the-Code"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="Here's-the-Code"&gt;Here's the Code&lt;a class="anchor-link" href="http://nixonite.github.io/posts/scraping-images-with-python.html#Here's-the-Code"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -561,7 +561,7 @@ In [10]:
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Result-and-Explanation"&gt;Result and Explanation&lt;a class="anchor-link" href="http://pythonmining.com/posts/scraping-images-with-python.html#Result-and-Explanation"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="Result-and-Explanation"&gt;Result and Explanation&lt;a class="anchor-link" href="http://nixonite.github.io/posts/scraping-images-with-python.html#Result-and-Explanation"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -582,7 +582,7 @@ In [10]:
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Another-Example"&gt;Another Example&lt;a class="anchor-link" href="http://pythonmining.com/posts/scraping-images-with-python.html#Another-Example"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="Another-Example"&gt;Another Example&lt;a class="anchor-link" href="http://nixonite.github.io/posts/scraping-images-with-python.html#Another-Example"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -628,7 +628,7 @@ In [11]:
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;This saves the file, and if you just want to &lt;/p&gt;&lt;p&gt;&lt;a href="http://pythonmining.com/posts/scraping-images-with-python.html"&gt;Read more…&lt;/a&gt; (7 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>beautiful</category><category>bs4</category><category>images</category><category>python</category><category>requests</category><category>scraping</category><category>soup</category><category>textfiles</category><category>urllib</category><category>urllib2</category><category>web</category><guid>http://pythonmining.com/posts/scraping-images-with-python.html</guid><pubDate>Tue, 05 May 2015 03:47:19 GMT</pubDate></item><item><title>Machine Learning with Porn - xHamster Data, Sexualitics, and Regression</title><link>http://pythonmining.com/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+&lt;p&gt;This saves the file, and if you just want to &lt;/p&gt;&lt;p&gt;&lt;a href="http://nixonite.github.io/posts/scraping-images-with-python.html"&gt;Read more…&lt;/a&gt; (7 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>beautiful</category><category>bs4</category><category>images</category><category>python</category><category>requests</category><category>scraping</category><category>soup</category><category>textfiles</category><category>urllib</category><category>urllib2</category><category>web</category><guid>http://nixonite.github.io/posts/scraping-images-with-python.html</guid><pubDate>Tue, 05 May 2015 03:47:19 GMT</pubDate></item><item><title>Machine Learning with Porn - xHamster Data, Sexualitics, and Regression</title><link>http://nixonite.github.io/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -824,7 +824,7 @@ Index([u'upload_date', u'category', u'views', u'votes', u'comments', u'runtime']
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;So here we see a cut-down version of the original dataset. I wasn't a fan of the original labeling of 'nb_comments' and such so I just renamed them to regular old 'comments,' and I then cut down the title, description, and uploader columns. I figured that categories would be enough since I was already intending on using one-hot encoding for category names. The descriptions and titles would add unnecessary columns in my view. The above display is what I have so far, I then tried to cut out some bad data - as you can see there is a NaN entry in row 1 (index 1).&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://pythonmining.com/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html"&gt;Read more…&lt;/a&gt; (5 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>data</category><category>learning</category><category>machine</category><category>mining</category><category>pandas</category><category>porn</category><category>python</category><category>regression</category><category>scikit-learn</category><category>scikitlearn</category><category>sklearn</category><category>statistics</category><guid>http://pythonmining.com/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html</guid><pubDate>Thu, 30 Apr 2015 11:45:44 GMT</pubDate></item><item><title>Comic Book Data</title><link>http://pythonmining.com/posts/comic-book-data.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+&lt;p&gt;&lt;a href="http://nixonite.github.io/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html"&gt;Read more…&lt;/a&gt; (5 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>data</category><category>learning</category><category>machine</category><category>mining</category><category>pandas</category><category>porn</category><category>python</category><category>regression</category><category>scikit-learn</category><category>scikitlearn</category><category>sklearn</category><category>statistics</category><guid>http://nixonite.github.io/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html</guid><pubDate>Thu, 30 Apr 2015 11:45:44 GMT</pubDate></item><item><title>Comic Book Data</title><link>http://nixonite.github.io/posts/comic-book-data.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -841,7 +841,7 @@ Index([u'upload_date', u'category', u'views', u'votes', u'comments', u'runtime']
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Marvel-Developer-API"&gt;&lt;a href="http://developer.marvel.com/"&gt;Marvel Developer API&lt;/a&gt;&lt;a class="anchor-link" href="http://pythonmining.com/posts/comic-book-data.html#Marvel-Developer-API"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="Marvel-Developer-API"&gt;&lt;a href="http://developer.marvel.com/"&gt;Marvel Developer API&lt;/a&gt;&lt;a class="anchor-link" href="http://nixonite.github.io/posts/comic-book-data.html#Marvel-Developer-API"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -851,9 +851,9 @@ Index([u'upload_date', u'category', u'views', u'votes', u'comments', u'runtime']
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/comic-book-data/marvel-api.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://nixonite.github.io/galleries/comic-book-data/marvel-api.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;First thing's first, I love Marvel's space opera. Thanos, Warlock, Surfer, Galactus, even Pip the Troll. Everything about space opera is exciting because it's all hugely important in the universe of these characters.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://pythonmining.com/posts/comic-book-data.html"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>api</category><category>book</category><category>comic</category><category>data</category><category>mining</category><category>python</category><category>scraping</category><category>web</category><guid>http://pythonmining.com/posts/comic-book-data.html</guid><pubDate>Sun, 12 Apr 2015 08:37:20 GMT</pubDate></item><item><title>Where to look for jobs and internships in data, tech, and code</title><link>http://pythonmining.com/posts/where-to-look-for-jobs-and-internships-in-data-tech-and-code.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+&lt;p&gt;&lt;a href="http://nixonite.github.io/posts/comic-book-data.html"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>api</category><category>book</category><category>comic</category><category>data</category><category>mining</category><category>python</category><category>scraping</category><category>web</category><guid>http://nixonite.github.io/posts/comic-book-data.html</guid><pubDate>Sun, 12 Apr 2015 08:37:20 GMT</pubDate></item><item><title>Where to look for jobs and internships in data, tech, and code</title><link>http://nixonite.github.io/posts/where-to-look-for-jobs-and-internships-in-data-tech-and-code.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -878,7 +878,7 @@ Index([u'upload_date', u'category', u'views', u'votes', u'comments', u'runtime']
 &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-</description><category>analysis</category><category>analyst</category><category>code</category><category>data</category><category>internships</category><category>jobs</category><category>list</category><category>science</category><category>tech</category><guid>http://pythonmining.com/posts/where-to-look-for-jobs-and-internships-in-data-tech-and-code.html</guid><pubDate>Mon, 30 Mar 2015 23:44:35 GMT</pubDate></item><item><title>The Straightforward Guide to Data Science</title><link>http://pythonmining.com/posts/the-straightforward-guide-to-data-science.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+</description><category>analysis</category><category>analyst</category><category>code</category><category>data</category><category>internships</category><category>jobs</category><category>list</category><category>science</category><category>tech</category><guid>http://nixonite.github.io/posts/where-to-look-for-jobs-and-internships-in-data-tech-and-code.html</guid><pubDate>Mon, 30 Mar 2015 23:44:35 GMT</pubDate></item><item><title>The Straightforward Guide to Data Science</title><link>http://nixonite.github.io/posts/the-straightforward-guide-to-data-science.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -929,4 +929,4 @@ Index([u'upload_date', u'category', u'views', u'votes', u'comments', u'runtime']
 &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-</description><category>books</category><category>data</category><category>guide</category><category>job</category><category>jobs</category><category>list</category><category>math</category><category>reading</category><category>required</category><category>science</category><category>straightforward</category><guid>http://pythonmining.com/posts/the-straightforward-guide-to-data-science.html</guid><pubDate>Mon, 30 Mar 2015 19:37:22 GMT</pubDate></item></channel></rss>
+</description><category>books</category><category>data</category><category>guide</category><category>job</category><category>jobs</category><category>list</category><category>math</category><category>reading</category><category>required</category><category>science</category><category>straightforward</category><guid>http://nixonite.github.io/posts/the-straightforward-guide-to-data-science.html</guid><pubDate>Mon, 30 Mar 2015 19:37:22 GMT</pubDate></item></channel></rss>

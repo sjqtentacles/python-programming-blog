@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Python Mining (machine)</title><link>http://pythonmining.com/</link><description></description><atom:link href="http://pythonmining.com/categories/machine.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 17 Apr 2016 02:48:30 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Open Source Machine Learning Degree</title><link>http://pythonmining.com/posts/open-source-machine-learning-degree.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Python Mining (machine)</title><link>http://nixonite.github.io/</link><description></description><atom:link href="http://nixonite.github.io/categories/machine.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 17 Apr 2016 03:01:23 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Open Source Machine Learning Degree</title><link>http://nixonite.github.io/posts/open-source-machine-learning-degree.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -9,14 +9,14 @@
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;I made a new site called &lt;a href="http://nixonite.github.io/open-source-machine-learning-degree/"&gt;"Open Source Machine Learning Degree."&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;It's a collection of &lt;b&gt;FREE AS IN FREE BEER&lt;/b&gt; books, lengthy notes, and a couple of small tutorial papers — all about machine learning.&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/osmld/topics.png" align="left"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://nixonite.github.io/galleries/osmld/topics.png" align="left"&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-</description><category>books</category><category>degree</category><category>free</category><category>github</category><category>html</category><category>io</category><category>learning</category><category>machine</category><category>new</category><category>open</category><category>pages</category><category>pdf</category><category>source</category><category>tutorials</category><guid>http://pythonmining.com/posts/open-source-machine-learning-degree.html</guid><pubDate>Thu, 09 Jul 2015 02:31:47 GMT</pubDate></item><item><title>Runescape Data Mining</title><link>http://pythonmining.com/posts/runescape-data-mining.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+</description><category>books</category><category>degree</category><category>free</category><category>github</category><category>html</category><category>io</category><category>learning</category><category>machine</category><category>new</category><category>open</category><category>pages</category><category>pdf</category><category>source</category><category>tutorials</category><guid>http://nixonite.github.io/posts/open-source-machine-learning-degree.html</guid><pubDate>Thu, 09 Jul 2015 02:31:47 GMT</pubDate></item><item><title>Runescape Data Mining</title><link>http://nixonite.github.io/posts/runescape-data-mining.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -25,9 +25,9 @@
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;The Runescape API is a &lt;u&gt;disappointment&lt;/u&gt;, so I just scraped the market (Grand Exchange prices for items) data from the fan site at &lt;a href="http://www.grandexchangewatch.com/"&gt;GrandExchangeWatch&lt;/a&gt;. It took a couple of days to store years of item price data into a MongoDB collection, but there was also the problem of cleaning said data.&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/runescape-data-mining/gewatch.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://nixonite.github.io/galleries/runescape-data-mining/gewatch.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;b&gt;After hours and hours of grueling labor, the mostly-clean dataset can be found on my Github page right over &lt;a href="https://github.com/Nixonite/Runescape-Grand-Exchange-Market-Data"&gt;here.&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/runescape-data-mining/datahead.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://nixonite.github.io/galleries/runescape-data-mining/datahead.png"&gt;&lt;/p&gt;
 &lt;p&gt;It comes with a ~30MB zip file which expands into a 3.5 million line CSV file (~300MB), and some notebooks for scraping the fan site, and a basic super simple analysis page which took my old dataset, cleaned it, and tossed a polynomial curve onto a single item's history.&lt;/p&gt;
 &lt;p&gt;Hope others can make good use of that dataset.&lt;/p&gt;
 
@@ -36,7 +36,7 @@
 &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-</description><category>csv</category><category>data</category><category>dataset</category><category>economy</category><category>exchange</category><category>file</category><category>game</category><category>github</category><category>grand</category><category>learning</category><category>machine</category><category>mining</category><category>runescape</category><category>scraping</category><category>set</category><category>text</category><category>virtual</category><category>web</category><guid>http://pythonmining.com/posts/runescape-data-mining.html</guid><pubDate>Mon, 06 Jul 2015 20:19:49 GMT</pubDate></item><item><title>Machine Learning with Porn - xHamster Data, Sexualitics, and Regression</title><link>http://pythonmining.com/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+</description><category>csv</category><category>data</category><category>dataset</category><category>economy</category><category>exchange</category><category>file</category><category>game</category><category>github</category><category>grand</category><category>learning</category><category>machine</category><category>mining</category><category>runescape</category><category>scraping</category><category>set</category><category>text</category><category>virtual</category><category>web</category><guid>http://nixonite.github.io/posts/runescape-data-mining.html</guid><pubDate>Mon, 06 Jul 2015 20:19:49 GMT</pubDate></item><item><title>Machine Learning with Porn - xHamster Data, Sexualitics, and Regression</title><link>http://nixonite.github.io/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -232,4 +232,4 @@ Index([u'upload_date', u'category', u'views', u'votes', u'comments', u'runtime']
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;So here we see a cut-down version of the original dataset. I wasn't a fan of the original labeling of 'nb_comments' and such so I just renamed them to regular old 'comments,' and I then cut down the title, description, and uploader columns. I figured that categories would be enough since I was already intending on using one-hot encoding for category names. The descriptions and titles would add unnecessary columns in my view. The above display is what I have so far, I then tried to cut out some bad data - as you can see there is a NaN entry in row 1 (index 1).&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://pythonmining.com/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html"&gt;Read more…&lt;/a&gt; (5 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>data</category><category>learning</category><category>machine</category><category>mining</category><category>pandas</category><category>porn</category><category>python</category><category>regression</category><category>scikit-learn</category><category>scikitlearn</category><category>sklearn</category><category>statistics</category><guid>http://pythonmining.com/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html</guid><pubDate>Thu, 30 Apr 2015 11:45:44 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;a href="http://nixonite.github.io/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html"&gt;Read more…&lt;/a&gt; (5 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>data</category><category>learning</category><category>machine</category><category>mining</category><category>pandas</category><category>porn</category><category>python</category><category>regression</category><category>scikit-learn</category><category>scikitlearn</category><category>sklearn</category><category>statistics</category><guid>http://nixonite.github.io/posts/machine-learning-with-porn-xhamster-data-sexualitics-and-regression.html</guid><pubDate>Thu, 30 Apr 2015 11:45:44 GMT</pubDate></item></channel></rss>

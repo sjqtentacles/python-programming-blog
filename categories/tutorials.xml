@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Python Mining (tutorials)</title><link>http://pythonmining.com/</link><description></description><atom:link href="http://pythonmining.com/categories/tutorials.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 17 Apr 2016 02:48:29 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Open Source Machine Learning Degree</title><link>http://pythonmining.com/posts/open-source-machine-learning-degree.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Python Mining (tutorials)</title><link>http://nixonite.github.io/</link><description></description><atom:link href="http://nixonite.github.io/categories/tutorials.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 17 Apr 2016 03:01:23 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Open Source Machine Learning Degree</title><link>http://nixonite.github.io/posts/open-source-machine-learning-degree.html</link><dc:creator>Allen</dc:creator><description>&lt;div tabindex="-1" id="notebook" class="border-box-sizing"&gt;
     &lt;div class="container" id="notebook-container"&gt;
 
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -9,11 +9,11 @@
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;I made a new site called &lt;a href="http://nixonite.github.io/open-source-machine-learning-degree/"&gt;"Open Source Machine Learning Degree."&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;It's a collection of &lt;b&gt;FREE AS IN FREE BEER&lt;/b&gt; books, lengthy notes, and a couple of small tutorial papers — all about machine learning.&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://pythonmining.com/galleries/osmld/topics.png" align="left"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://nixonite.github.io/galleries/osmld/topics.png" align="left"&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-</description><category>books</category><category>degree</category><category>free</category><category>github</category><category>html</category><category>io</category><category>learning</category><category>machine</category><category>new</category><category>open</category><category>pages</category><category>pdf</category><category>source</category><category>tutorials</category><guid>http://pythonmining.com/posts/open-source-machine-learning-degree.html</guid><pubDate>Thu, 09 Jul 2015 02:31:47 GMT</pubDate></item></channel></rss>
+</description><category>books</category><category>degree</category><category>free</category><category>github</category><category>html</category><category>io</category><category>learning</category><category>machine</category><category>new</category><category>open</category><category>pages</category><category>pdf</category><category>source</category><category>tutorials</category><guid>http://nixonite.github.io/posts/open-source-machine-learning-degree.html</guid><pubDate>Thu, 09 Jul 2015 02:31:47 GMT</pubDate></item></channel></rss>

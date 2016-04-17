@@ -1,4 +1,4 @@
-Sitemap: http://pythonmining.com/sitemapindex.xml
+Sitemap: http://nixonite.github.io/sitemapindex.xml
 
 User-Agent: *
-Host: pythonmining.com
+Host: nixonite.github.io
